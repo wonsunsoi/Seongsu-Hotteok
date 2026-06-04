@@ -2,9 +2,83 @@
 <html>
 <head>
     <title>Seongsu Hotteok</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+
+        nav {
+            background-color: #333;
+            padding: 15px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-right: 20px;
+            font-weight: bold;
+        }
+
+        section {
+            padding: 30px;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+
+    <script>
+        function showPage(pageId) {
+
+            const pages = document.querySelectorAll(".page");
+
+            pages.forEach(page => {
+                page.classList.add("hidden");
+            });
+
+            document.getElementById(pageId)
+                .classList.remove("hidden");
+        }
+    </script>
+
 </head>
+
 <body>
-    <h1>Welcome to Seongsu Hotteok</h1>
-    <p>Coming Soon</p>
+
+<nav>
+    <a href="#" onclick="showPage('home')">Home</a>
+    <a href="#" onclick="showPage('menu')">Menu</a>
+    <a href="#" onclick="showPage('location')">Location</a>
+    <a href="#" onclick="showPage('contact')">Contact</a>
+</nav>
+
+<section id="home" class="page">
+    <h1>Seongsu Hotteok</h1>
+    <p>Welcome to Seongsu Hotteok</p>
+</section>
+
+<section id="menu" class="page hidden">
+    <h1>Menu</h1>
+
+    <ul>
+        <li>Honey Hotteok - ₩4,000</li>
+        <li>Cheese Hotteok - ₩5,000</li>
+        <li>Ice Cream Hotteok - ₩6,000</li>
+    </ul>
+</section>
+
+<section id="location" class="page hidden">
+    <h1>Location</h1>
+    <p>Seongsu-dong, Seoul</p>
+</section>
+
+<section id="contact" class="page hidden">
+    <h1>Contact</h1>
+    <p>Instagram: @seongsuhotteok</p>
+</section>
+
 </body>
 </html>
