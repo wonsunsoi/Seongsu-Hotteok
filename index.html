@@ -29,20 +29,26 @@
             display: none;
         }
     </style>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const buttons = document.querySelectorAll("[data-lang]");
 
-    <script>
-        function showPage(pageId) {
+    buttons.forEach(btn => {
+        btn.addEventListener("click", () => {
+            const lang = btn.dataset.lang;
 
-            const pages = document.querySelectorAll(".page");
-
-            pages.forEach(page => {
-                page.classList.add("hidden");
+            document.querySelectorAll(".lang").forEach(el => {
+                el.classList.add("hidden");
             });
 
-            document.getElementById(pageId)
-                .classList.remove("hidden");
-        }
-    </script>
+            const target = document.querySelector(".lang." + lang);
+            if (target) {
+                target.classList.remove("hidden");
+            }
+        });
+    });
+});
+</script>
 
 </head>
 
