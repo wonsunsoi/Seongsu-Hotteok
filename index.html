@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>Seongsu Hotteok</title>
 
     <style>
@@ -32,49 +33,56 @@
         button {
             margin-right: 8px;
             margin-bottom: 10px;
+            padding: 6px 10px;
+            cursor: pointer;
         }
     </style>
 
-<script>
-document.addEventListener("DOMContentLoaded", () => {
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
 
-    // ✅ 1. 페이지 전환 함수 (핵심 수정)
-    window.showPage = function(pageId) {
-        document.querySelectorAll(".page").forEach(sec => {
-            sec.classList.add("hidden");
-        });
+            // =========================
+            // PAGE SWITCHING
+            // =========================
+            window.showPage = function(pageId) {
+                document.querySelectorAll(".page").forEach(sec => {
+                    sec.classList.add("hidden");
+                });
 
-        const target = document.getElementById(pageId);
-        if (target) {
-            target.classList.remove("hidden");
-        }
-    };
+                const target = document.getElementById(pageId);
+                if (target) {
+                    target.classList.remove("hidden");
+                }
+            };
 
-    // ✅ 2. 언어 전환
-    const buttons = document.querySelectorAll("[data-lang]");
+            // =========================
+            // LANGUAGE SWITCHING (FIXED)
+            // =========================
+            const langButtons = document.querySelectorAll("[data-lang-btn]");
 
-    buttons.forEach(btn => {
-        btn.addEventListener("click", () => {
-            const lang = btn.dataset.lang;
+            langButtons.forEach(btn => {
+                btn.addEventListener("click", () => {
+                    const lang = btn.getAttribute("data-lang-btn");
 
-            document.querySelectorAll(".lang").forEach(el => {
-                el.classList.add("hidden");
+                    document.querySelectorAll(".lang").forEach(el => {
+                        el.style.display = "none";
+                    });
+
+                    const target = document.querySelector(`.lang[data-lang="${lang}"]`);
+                    if (target) {
+                        target.style.display = "block";
+                    }
+                });
             });
 
-            const target = document.querySelector(".lang." + lang);
-            if (target) {
-                target.classList.remove("hidden");
-            }
         });
-    });
-
-});
-</script>
+    </script>
 
 </head>
 
 <body>
 
+<!-- NAV -->
 <nav>
     <a href="#" onclick="showPage('home')">Home</a>
     <a href="#" onclick="showPage('intro')">Introduction</a>
@@ -84,72 +92,81 @@ document.addEventListener("DOMContentLoaded", () => {
     <a href="#" onclick="showPage('contact')">Contact</a>
 </nav>
 
+<!-- HOME -->
 <section id="home" class="page">
     <h1>Seongsu Hotteok</h1>
     <p>Welcome to Seongsu Hotteok</p>
 </section>
 
+<!-- INTRO -->
 <section id="intro" class="page hidden">
     <h1>Introduction</h1>
 
     <p>
         Seongsu Hotteok is a modern Korean street dessert brand
-        inspired by the creative culture of Seongsu-dong.
+        inspired by Seongsu-dong culture.
     </p>
 
     <p>
-        We serve freshly made hotteok with premium ingredients,
-        combining traditional Korean flavors with modern café culture.
+        Fresh hotteok made with premium ingredients and modern café style.
     </p>
 </section>
 
+<!-- MENU -->
 <section id="menu" class="page hidden">
 
+    <!-- LANGUAGE BUTTONS -->
     <div>
-        <button data-lang="ko">한국어</button>
-        <button data-lang="en">English</button>
-        <button data-lang="ja">日本語</button>
-        <button data-lang="zh">中文</button>
-        <button data-lang="es">Español</button>
+        <button data-lang-btn="ko">한국어</button>
+        <button data-lang-btn="en">English</button>
+        <button data-lang-btn="ja">日本語</button>
+        <button data-lang-btn="zh">中文</button>
+        <button data-lang-btn="es">Español</button>
     </div>
 
-    <div class="lang ko">
+    <!-- KO -->
+    <div class="lang" data-lang="ko">
         <h3>일반호떡</h3><p>₩3,500</p>
         <h3>녹차호떡</h3><p>₩4,000</p>
         <h3>호떡 아이스크림</h3><p>₩5,000</p>
-        <h3>옛날 미숫가루 (HOT / ICE)</h3><p>₩5,500</p>
+        <h3>미숫가루 (HOT / ICE)</h3><p>₩5,500</p>
     </div>
 
-    <div class="lang en hidden">
+    <!-- EN -->
+    <div class="lang" data-lang="en" style="display:none;">
         <h3>Original Hotteok</h3><p>₩3,500</p>
         <h3>Matcha Hotteok</h3><p>₩4,000</p>
         <h3>Hotteok Ice Cream</h3><p>₩5,000</p>
-        <h3>Traditional Misutgaru (HOT / ICE)</h3><p>₩5,500</p>
+        <h3>Traditional Grain Drink</h3><p>₩5,500</p>
     </div>
 
-    <div class="lang ja hidden">
+    <!-- JA -->
+    <div class="lang" data-lang="ja" style="display:none;">
         <h3>オリジナルホットク</h3><p>₩3,500</p>
         <h3>抹茶ホットク</h3><p>₩4,000</p>
-        <h3>ホットクアイスクリーム</h3><p>₩5,000</p>
-        <h3>昔ながらのミスッカル（HOT / ICE）</h3><p>₩5,500</p>
+        <h3>ホットクアイス</h3><p>₩5,000</p>
+        <h3>ミスッカル</h3><p>₩5,500</p>
     </div>
 
-    <div class="lang zh hidden">
+    <!-- ZH -->
+    <div class="lang" data-lang="zh" style="display:none;">
         <h3>原味糖饼</h3><p>₩3,500</p>
         <h3>抹茶糖饼</h3><p>₩4,000</p>
         <h3>糖饼冰淇淋</h3><p>₩5,000</p>
-        <h3>传统谷物饮（热 / 冰）</h3><p>₩5,500</p>
+        <h3>谷物饮</h3><p>₩5,500</p>
     </div>
 
-    <div class="lang es hidden">
+    <!-- ES -->
+    <div class="lang" data-lang="es" style="display:none;">
         <h3>Hotteok Original</h3><p>₩3,500</p>
-        <h3>Hotteok de Matcha</h3><p>₩4,000</p>
-        <h3>Helado con Hotteok</h3><p>₩5,000</p>
-        <h3>Bebida Tradicional de Granos (Caliente / Fría)</h3><p>₩5,500</p>
+        <h3>Hotteok Matcha</h3><p>₩4,000</p>
+        <h3>Helado Hotteok</h3><p>₩5,000</p>
+        <h3>Bebida de Granos</h3><p>₩5,500</p>
     </div>
 
 </section>
 
+<!-- LOCATION -->
 <section id="location" class="page hidden">
     <h1>Location</h1>
 
@@ -159,22 +176,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
     <div style="display:flex;justify-content:center;">
         <iframe
-            src="https://maps.google.com/maps?q=272-30%20Seongsu-dong%202-ga%20Seongdong-gu%20Seoul&t=&z=15&ie=UTF8&iwloc=&output=embed"
+            src="https://maps.google.com/maps?q=Seongsu-dong%20Seoul&t=&z=15&ie=UTF8&iwloc=&output=embed"
             width="800"
             height="450"
-            style="border:0;"
-            loading="lazy">
+            style="border:0;">
         </iframe>
     </div>
 </section>
 
+<!-- CONTACT -->
 <section id="contact" class="page hidden">
     <h1>Contact</h1>
 
     <p><strong>Founder</strong><br>권운영</p>
-    <p><strong>Contact</strong><br>666kcal@naver.com</p>
+    <p><strong>Email</strong><br>666kcal@naver.com</p>
 </section>
 
+<!-- GALLERY -->
 <section id="gallery" class="page hidden">
     <h1>Gallery</h1>
 
