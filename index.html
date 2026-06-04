@@ -28,9 +28,29 @@
         .hidden {
             display: none;
         }
+
+        button {
+            margin-right: 8px;
+            margin-bottom: 10px;
+        }
     </style>
+
 <script>
 document.addEventListener("DOMContentLoaded", () => {
+
+    // ✅ 1. 페이지 전환 함수 (핵심 수정)
+    window.showPage = function(pageId) {
+        document.querySelectorAll(".page").forEach(sec => {
+            sec.classList.add("hidden");
+        });
+
+        const target = document.getElementById(pageId);
+        if (target) {
+            target.classList.remove("hidden");
+        }
+    };
+
+    // ✅ 2. 언어 전환
     const buttons = document.querySelectorAll("[data-lang]");
 
     buttons.forEach(btn => {
@@ -47,6 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     });
+
 });
 </script>
 
@@ -68,7 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
     <p>Welcome to Seongsu Hotteok</p>
 </section>
 
-    <section id="intro" class="page hidden">
+<section id="intro" class="page hidden">
     <h1>Introduction</h1>
 
     <p>
@@ -81,134 +102,87 @@ document.addEventListener("DOMContentLoaded", () => {
         combining traditional Korean flavors with modern café culture.
     </p>
 </section>
+
 <section id="menu" class="page hidden">
- <div>
 
-<button data-lang="ko">한국어</button>
-<button data-lang="en">English</button>
-<button data-lang="ja">日本語</button>
-<button data-lang="zh">中文</button>
-<button data-lang="es">Español</button>
+    <div>
+        <button data-lang="ko">한국어</button>
+        <button data-lang="en">English</button>
+        <button data-lang="ja">日本語</button>
+        <button data-lang="zh">中文</button>
+        <button data-lang="es">Español</button>
+    </div>
 
-</div>
     <div class="lang ko">
+        <h3>일반호떡</h3><p>₩3,500</p>
+        <h3>녹차호떡</h3><p>₩4,000</p>
+        <h3>호떡 아이스크림</h3><p>₩5,000</p>
+        <h3>옛날 미숫가루 (HOT / ICE)</h3><p>₩5,500</p>
+    </div>
 
-<h3>일반호떡</h3>
-<p>₩3,500</p>
-
-<h3>녹차호떡</h3>
-<p>₩4,000</p>
-
-<h3>호떡 아이스크림</h3>
-<p>₩5,000</p>
-
-<h3>옛날 미숫가루 (HOT / ICE)</h3>
-<p>₩5,500</p>
-
-</div>
     <div class="lang en hidden">
+        <h3>Original Hotteok</h3><p>₩3,500</p>
+        <h3>Matcha Hotteok</h3><p>₩4,000</p>
+        <h3>Hotteok Ice Cream</h3><p>₩5,000</p>
+        <h3>Traditional Misutgaru (HOT / ICE)</h3><p>₩5,500</p>
+    </div>
 
-<h3>Original Hotteok</h3>
-<p>₩3,500</p>
-
-<h3>Matcha Hotteok</h3>
-<p>₩4,000</p>
-
-<h3>Hotteok Ice Cream</h3>
-<p>₩5,000</p>
-
-<h3>Traditional Misutgaru (HOT / ICE)</h3>
-<p>₩5,500</p>
-
-</div>
     <div class="lang ja hidden">
+        <h3>オリジナルホットク</h3><p>₩3,500</p>
+        <h3>抹茶ホットク</h3><p>₩4,000</p>
+        <h3>ホットクアイスクリーム</h3><p>₩5,000</p>
+        <h3>昔ながらのミスッカル（HOT / ICE）</h3><p>₩5,500</p>
+    </div>
 
-<h3>オリジナルホットク</h3>
-<p>₩3,500</p>
-
-<h3>抹茶ホットク</h3>
-<p>₩4,000</p>
-
-<h3>ホットクアイスクリーム</h3>
-<p>₩5,000</p>
-
-<h3>昔ながらのミスッカル（HOT / ICE）</h3>
-<p>₩5,500</p>
-
-</div>
     <div class="lang zh hidden">
+        <h3>原味糖饼</h3><p>₩3,500</p>
+        <h3>抹茶糖饼</h3><p>₩4,000</p>
+        <h3>糖饼冰淇淋</h3><p>₩5,000</p>
+        <h3>传统谷物饮（热 / 冰）</h3><p>₩5,500</p>
+    </div>
 
-<h3>原味糖饼</h3>
-<p>₩3,500</p>
-
-<h3>抹茶糖饼</h3>
-<p>₩4,000</p>
-
-<h3>糖饼冰淇淋</h3>
-<p>₩5,000</p>
-
-<h3>传统谷物饮（热 / 冰）</h3>
-<p>₩5,500</p>
-
-</div>
     <div class="lang es hidden">
+        <h3>Hotteok Original</h3><p>₩3,500</p>
+        <h3>Hotteok de Matcha</h3><p>₩4,000</p>
+        <h3>Helado con Hotteok</h3><p>₩5,000</p>
+        <h3>Bebida Tradicional de Granos (Caliente / Fría)</h3><p>₩5,500</p>
+    </div>
 
-<h3>Hotteok Original</h3>
-<p>₩3,500</p>
-
-<h3>Hotteok de Matcha</h3>
-<p>₩4,000</p>
-
-<h3>Helado con Hotteok</h3>
-<p>₩5,000</p>
-
-<h3>Bebida Tradicional de Granos (Caliente / Fría)</h3>
-<p>₩5,500</p>
-
-</div>
 </section>
 
 <section id="location" class="page hidden">
+    <h1>Location</h1>
 
-<h1>Location</h1>
+    <p style="text-align:center;">
+        Yeonmujang-gil, Seongsu-dong, Seoul
+    </p>
 
-<p style="text-align:center;">
-Yeonmujang-gil, Seongsu-dong, Seoul
-</p>
-
-<div style="display:flex;justify-content:center;">
-<iframe
-src="https://maps.google.com/maps?q=272-30%20Seongsu-dong%202-ga%20Seongdong-gu%20Seoul&t=&z=15&ie=UTF8&iwloc=&output=embed"
-width="800"
-height="450"
-style="border:0;"
-allowfullscreen=""
-loading="lazy">
-</iframe>
-</div>
-
+    <div style="display:flex;justify-content:center;">
+        <iframe
+            src="https://maps.google.com/maps?q=272-30%20Seongsu-dong%202-ga%20Seongdong-gu%20Seoul&t=&z=15&ie=UTF8&iwloc=&output=embed"
+            width="800"
+            height="450"
+            style="border:0;"
+            loading="lazy">
+        </iframe>
+    </div>
 </section>
 
 <section id="contact" class="page hidden">
-
     <h1>Contact</h1>
 
-    <p><strong>Founder</strong><br>
-    권운영</p>
-
-    <p><strong>Contact</strong><br>
-    666kcal@naver.com</p>
-
+    <p><strong>Founder</strong><br>권운영</p>
+    <p><strong>Contact</strong><br>666kcal@naver.com</p>
 </section>
+
 <section id="gallery" class="page hidden">
+    <h1>Gallery</h1>
 
-<h1>Gallery</h1>
-
-<img src="images/store1.jpg" width="300">
-<img src="images/store2.jpg" width="300">
-<img src="images/store3.jpg" width="300">
-<img src="images/store4.jpg" width="300">
-
+    <img src="images/store1.jpg" width="300">
+    <img src="images/store2.jpg" width="300">
+    <img src="images/store3.jpg" width="300">
+    <img src="images/store4.jpg" width="300">
 </section>
+
 </body>
 </html>
